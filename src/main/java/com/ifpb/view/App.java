@@ -13,66 +13,58 @@ public class App {
     public static void main(String[] args) {
         UserDao dao = new UserDao();
 
-        //Part 1 - Save user
-        dao.saveUser(new Usuario(1, "João", "joao@mail.com", "pass1",
-                LocalDate.now(), LocalDate.now()));
-        dao.saveUser(new Usuario(2, "Maria", "maria@mail.com", "pass2",
-                LocalDate.now(), LocalDate.now()));
-        dao.saveUser(new Usuario(3, "Pedro", "pedro@mail.com", "pass3",
-                LocalDate.now(), LocalDate.now()));
-        dao.saveUser(new Usuario(4, "Fulano", "fulano@mail.com", "pass4",
-                LocalDate.now(), LocalDate.now()));
-        dao.saveUser(new Usuario(5, "Katarina", "katarina@mail.com", "pass5",
-                LocalDate.now(), LocalDate.now()));
-        dao.saveUser(new Usuario(6, "Frodo", "frodo@mail.com", "pass6",
-                LocalDate.now(), LocalDate.now()));
-        dao.saveUser(new Usuario(7, "Goku", "goku@mail.com", "pass7",
-                LocalDate.now(), LocalDate.now()));
+        //Part 1 - Salvar Usuario
+        dao.salvarUsuario(new Usuario(1, "João", "joao@gmail.com", "123"));
 
-        //Part 2 - Friedship
-        dao.friendship(new Amigo(2, 4, LocalDate.now()));
-        dao.friendship(new Amigo(2, 3, LocalDate.now()));
-        dao.friendship(new Amigo(2, 5, LocalDate.now()));
-        dao.friendship(new Amigo(5, 1, LocalDate.now()));
-        dao.friendship(new Amigo(5, 2, LocalDate.now()));
-        dao.friendship(new Amigo(5, 6, LocalDate.now()));
-        dao.friendship(new Amigo(6, 5, LocalDate.now()));
-        dao.friendship(new Amigo(2, 1, LocalDate.now()));
+        dao.salvarUsuario(new Usuario(2, "Maria", "maria@gmail.com", "123456"));
 
-        //Part 3 - Save publish
-        dao.savePost(new Publicacao("Katarina", 1, 5,
-                "Olá, meu nome pe Katarina.", LocalDate.now()));
-        dao.savePost(new Publicacao("Katarina", 2, 5,
-                "Minha segunda publicação, que legal!!.", LocalDate.now()));
-        dao.savePost(new Publicacao("Frodo", 3, 6,
-                "Eu salvei a Terra-Média.", LocalDate.now()));
-        dao.savePost(new Publicacao("Maria", 4, 2,
-                "Em um relacionamento sério com João <3", LocalDate.now()));
-        dao.savePost(new Publicacao("Frodo", 5, 6,
-                "Em direção a Mordor !!! #TerraMedia #Hobbit", LocalDate.now()));
-        dao.savePost(new Publicacao("João", 6, 1,
-                "Pensando em alguma coisa...", LocalDate.now()));
-        dao.savePost(new Publicacao("Goku", 7, 7,
-                "Oi, eu sou Goku@", LocalDate.now()));
+        dao.salvarUsuario(new Usuario(3, "Paulo", "paulo@hotmail.com", "321"));
+
+        dao.salvarUsuario(new Usuario(4, "Ana", "ana@hotmail.com", "654321"));
+        
+        dao.salvarUsuario(new Usuario(5, "Pedro", "pedro@gmail.com", "1234"));
+
+        //Part 2 - Salvar amizade
+        dao.amizade(new Amigo(2, 4, LocalDate.now()));
+        dao.amizade(new Amigo(2, 3, LocalDate.now()));
+        dao.amizade(new Amigo(2, 5, LocalDate.now()));
+        dao.amizade(new Amigo(5, 1, LocalDate.now()));
+        dao.amizade(new Amigo(5, 2, LocalDate.now()));
+        dao.amizade(new Amigo(2, 1, LocalDate.now()));
+
+        //Part 3 - Salvar publicação
+        dao.salvarPost(new Publicacao("Ana", 1, 4,
+                "Olá, meu nome é Ana.", LocalDate.now()));
+        dao.salvarPost(new Publicacao("Ana", 2, 4,
+                "Acabei de comer uma pizza!", LocalDate.now()));
+        dao.salvarPost(new Publicacao("Pedro", 3, 5,
+                "GG!", LocalDate.now()));
+        dao.salvarPost(new Publicacao("Maria", 4, 2,
+                "Em um relacionamento sério com João!!", LocalDate.now()));
+        dao.salvarPost(new Publicacao("Paulo", 5, 3,
+                "Novo cham do LOL está bem \"balanceado\"", LocalDate.now()));
+        dao.salvarPost(new Publicacao("João", 6, 1,
+                "Pronto para viagem", LocalDate.now()));
+        
 
 
-        //Part 4 - Seguidor another user
-        dao.follow(new Seguidor(1, 7, LocalDate.now()));
-        dao.follow(new Seguidor(7, 2, LocalDate.now()));
-        dao.follow(new Seguidor(5, 3, LocalDate.now()));
-        dao.follow(new Seguidor(1, 6, LocalDate.now()));
-        dao.follow(new Seguidor(4, 6, LocalDate.now()));
+        //Part 4 - Seguidor
+        dao.seguir(new Seguidor(1, 5, LocalDate.now()));
+        dao.seguir(new Seguidor(2, 3, LocalDate.now()));
+        dao.seguir(new Seguidor(5, 3, LocalDate.now()));
+        dao.seguir(new Seguidor(1, 4, LocalDate.now()));
+        dao.seguir(new Seguidor(4, 1, LocalDate.now()));
 
-        //Part5 - Find friends of friend
-        dao.findFriendsOfFriend("katarina@mail.com");
-        dao.findFriendsOfFriend("maria@mail.com");
-        dao.findFriendsOfFriend("frodo@mail.com");
+        //Part5 - Encontrar Amigo
+        dao.encontrarAmigo("Ana@hotmail.com");
+        dao.encontrarAmigo("maria@gmail.com");
+        dao.encontrarAmigo("Pedro@gmail.com");
 
-        //Part 6 - Unfriend
-        dao.unfriend(new Amigo(6, 5, null));
+        //Part 6 - desfazer amizade
+        dao.desAmizade(new Amigo(2, 4, null));
 
-        //Part 4 - Unfollow another user
-        dao.unfollow(new Seguidor(5, 3, null));
+        //Part 4 - desfazer seguir
+        dao.desSeguir(new Seguidor(1, 4, null));
 
         try{
             dao.close();
